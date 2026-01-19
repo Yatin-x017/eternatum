@@ -42,7 +42,7 @@ const LandingSceneConfig: Phaser.Types.Core.GameConfig = {
             });
 
             // Floating Title Particles
-            const particles = scene.add.particles(0, 0, 'flare', {
+            scene.add.particles(0, 0, 'flare', {
                 x: { min: 0, max: width },
                 y: { min: 0, max: height },
                 lifespan: 2000,

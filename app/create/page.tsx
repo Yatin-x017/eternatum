@@ -2,7 +2,7 @@
 
 import React from 'react';
 import dynamic from 'next/dynamic';
-import { PanelLeft, Play } from 'lucide-react';
+import { Play } from 'lucide-react';
 
 const CodeEditor = dynamic(() => import('@/components/editor/CodeEditor'), { ssr: false });
 const GameCanvas = dynamic(() => import('@/components/game/GameCanvas'), { ssr: false });
