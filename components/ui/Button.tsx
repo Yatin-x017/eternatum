@@ -37,10 +37,21 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             onClick?.(e);
         };
 
+        const computedClassName = cn(baseStyles, variants[variant], sizes[size], glowEffect, className);
+
+        // If asChild is true, apply styles to child element
+        if (asChild) {
+            return React.cloneElement(children as React.ReactElement, {
+                className: computedClassName,
+                ref: ref,
+                ...props,
+            } as any);
+        }
+
         return (
             <button
                 ref={ref}
-                className={cn(baseStyles, variants[variant], sizes[size], glowEffect, className)}
+                className={computedClassName}
                 onClick={handleClick}
                 {...props}
             >
