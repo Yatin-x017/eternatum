@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
+import CatMascot from './CatMascot';
 
 interface WarpIntroProps {
     onSkip?: () => void;
