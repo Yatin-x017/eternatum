@@ -27,11 +27,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <AudioProvider>
-          <ArcadeBackgroundProvider>
-            <AppContent>{children}</AppContent>
-          </ArcadeBackgroundProvider>
-        </AudioProvider>
+        <SessionProvider>
+          <AudioProvider>
+            <ArcadeBackgroundProvider>
+              <AppContent>{children}</AppContent>
+            </ArcadeBackgroundProvider>
+          </AudioProvider>
+        </SessionProvider>
       </body>
     </html>
   );
