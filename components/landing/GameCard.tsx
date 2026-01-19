@@ -26,32 +26,46 @@ export default function GameCard({
     status,
     onClick,
 }: GameCardProps) {
+    const audio = useAudio();
+
+    const handleClick = () => {
+        audio.play('confirm');
+        onClick?.();
+    };
+
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            audio.play('confirm');
+            onClick?.();
+        }
+    };
+
+    // Color mapping for status
+    const statusColorMap: Record<string, string> = {
+        featured: 'border-neon-red/50 hover:border-neon-red',
+        new: 'border-neon-blue/50 hover:border-neon-blue',
+        beta: 'border-neon-green-bright/50 hover:border-neon-green-bright',
+    };
+
+    const borderColor = status && statusColorMap[status] ? statusColorMap[status] : 'border-cyan-500/30';
+
     return (
         <Card
             variant="game"
-            className="cursor-pointer group overflow-hidden h-full flex flex-col"
-            onClick={onClick}
+            className={`cursor-pointer group overflow-hidden h-full flex flex-col border-2 ${borderColor} transition-all duration-300 hover:shadow-lg hover:box-glow`}
+            onClick={handleClick}
             role="link"
             tabIndex={0}
-            onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    onClick?.();
-                }
-            }}
+            onKeyDown={handleKeyDown}
         >
             {/* Thumbnail */}
-            <div className="relative aspect-video bg-surface-highlight overflow-hidden border-b border-white/5 group-hover:border-cyan-500/30 transition-colors">
-                {thumbnail ? (
-                    <img
-                        src={thumbnail}
-                        alt={title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                ) : (
-                    <div className="w-full h-full flex items-center justify-center">
-                        <span className="font-pixel text-gray-600 text-sm">NO SIGNAL</span>
-                    </div>
-                )}
+            <div className="relative overflow-hidden group-hover:scale-105 transition-transform duration-300">
+                <GameThumbnail
+                    gameId={id}
+                    title={title}
+                    customImage={thumbnail}
+                    className="border-b border-white/5"
+                />
 
                 {/* Play button overlay */}
                 <button
