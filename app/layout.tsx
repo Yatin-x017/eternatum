@@ -1,5 +1,6 @@
 'use client';
 import { Inter } from 'next/font/google';
+import { SessionProvider } from 'next-auth/react';
 import { ArcadeBackground } from '@/components/arcade-background/ArcadeBackground';
 import { ArcadeBackgroundProvider, useArcadeBackground } from '@/contexts/ArcadeBackgroundContext';
 import { AudioProvider } from '@/contexts/AudioContext';
