@@ -69,6 +69,11 @@ export default function WarpIntro({ onSkip, onComplete, autoSkipDelay = 5000 }: 
 
             {/* Center content */}
             <div className="absolute inset-0 flex flex-col items-center justify-center">
+                {/* Cool Cat Mascot with Thug Glasses */}
+                <div className="mb-8 animate-fade-in">
+                    <CatMascot animate size="lg" className="drop-shadow-lg" />
+                </div>
+
                 {/* Logo with glow */}
                 <div className="mb-12 text-center animate-pulse-slow">
                     <div className="w-16 h-16 bg-neon-cyan rounded-sm mx-auto mb-6 shadow-[0_0_40px_rgba(0,240,255,0.8)]" />
