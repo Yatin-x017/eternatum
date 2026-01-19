@@ -31,10 +31,16 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
         const glowEffect = glow ? "animate-pulse-slow" : "";
 
+        const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+            audio.play(soundEffect);
+            onClick?.(e);
+        };
+
         return (
             <button
                 ref={ref}
                 className={cn(baseStyles, variants[variant], sizes[size], glowEffect, className)}
+                onClick={handleClick}
                 {...props}
             >
                 {variant === 'primary' || variant === 'secondary' ? (
