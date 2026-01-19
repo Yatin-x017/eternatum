@@ -1,13 +1,21 @@
-import type { Metadata } from 'next';
+'use client';
 import { Inter } from 'next/font/google';
+import { ArcadeBackground } from '@/components/arcade-background/ArcadeBackground';
+import { ArcadeBackgroundProvider, useArcadeBackground } from '@/contexts/ArcadeBackgroundContext';
 import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
 
-export const metadata: Metadata = {
-  title: 'Eternatum | Game Dev Platform',
-  description: 'Build games in your browser with AI.',
-};
+function AppContent({ children }: { children: React.ReactNode }) {
+  const { isBackgroundVisible } = useArcadeBackground();
+
+  return (
+    <>
+      {isBackgroundVisible && <ArcadeBackground />}
+      {children}
+    </>
+  );
+}
 
 export default function RootLayout({
   children,
@@ -16,7 +24,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <ArcadeBackgroundProvider>
+          <AppContent>{children}</AppContent>
+        </ArcadeBackgroundProvider>
+      </body>
     </html>
   );
 }
