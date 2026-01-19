@@ -74,13 +74,40 @@ export default function FeaturedGames({
         },
     ];
 
-    const displayGames = games.length > 0 ? games : defaultGames;
+    const allGames = games.length > 0 ? games : defaultGames;
+
+    // Filter games based on status
+    const filteredGames = useMemo(() => {
+        if (filterStatus === 'all') {
+            return allGames;
+        }
+        return allGames.filter((game) => game.status === filterStatus);
+    }, [allGames, filterStatus]);
+
+    // Sort games
+    const sortedGames = useMemo(() => {
+        const gamesCopy = [...filteredGames];
+        switch (sortBy) {
+            case 'likes':
+                return gamesCopy.sort((a, b) => b.likes - a.likes);
+            case 'newest':
+                return gamesCopy.reverse();
+            case 'featured':
+            default:
+                return gamesCopy.sort((a, b) => {
+                    const statusOrder = { featured: 0, new: 1, beta: 2 };
+                    const statusA = statusOrder[a.status as keyof typeof statusOrder] ?? 3;
+                    const statusB = statusOrder[b.status as keyof typeof statusOrder] ?? 3;
+                    return statusA - statusB;
+                });
+        }
+    }, [filteredGames, sortBy]);
 
     return (
         <section className="relative z-10 py-16 px-6">
             <div className="max-w-7xl mx-auto">
                 {/* Section header */}
-                <div className="flex items-center gap-4 mb-12">
+                <div className="flex items-center gap-4 mb-8">
                     <div className="h-px flex-1 bg-gradient-to-r from-transparent to-white/20" />
                     <div className="text-center flex-shrink-0">
                         <h2 className="font-pixel text-sm text-gray-500 tracking-widest mb-1">
@@ -93,9 +120,62 @@ export default function FeaturedGames({
                     <div className="h-px flex-1 bg-gradient-to-l from-transparent to-white/20" />
                 </div>
 
+                {/* Filter and Sort Controls */}
+                <div className="flex flex-col md:flex-row gap-6 mb-10 items-start md:items-center justify-between">
+                    {/* Filters */}
+                    <div className="flex flex-wrap gap-2">
+                        <span className="text-sm text-gray-500 font-pixel self-center mr-2">FILTER:</span>
+                        {(['all', 'featured', 'new', 'beta'] as const).map((status) => (
+                            <Button
+                                key={status}
+                                variant={filterStatus === status ? 'primary' : 'outline'}
+                                size="sm"
+                                onClick={() => setFilterStatus(status)}
+                                soundEffect="click"
+                                className={`capitalize font-pixel text-xs tracking-wider ${
+                                    filterStatus === status
+                                        ? 'text-black'
+                                        : status === 'featured'
+                                            ? 'text-neon-red hover:text-neon-red'
+                                            : status === 'new'
+                                                ? 'text-neon-blue hover:text-neon-blue'
+                                                : status === 'beta'
+                                                    ? 'text-neon-green-bright hover:text-neon-green-bright'
+                                                    : ''
+                                }`}
+                            >
+                                {status === 'all' ? '◆ ALL' : `◆ ${status.toUpperCase()}`}
+                            </Button>
+                        ))}
+                    </div>
+
+                    {/* Sort Options */}
+                    <div className="flex flex-wrap gap-2">
+                        <span className="text-sm text-gray-500 font-pixel self-center mr-2">SORT:</span>
+                        {(['featured', 'likes', 'newest'] as const).map((sort) => (
+                            <Button
+                                key={sort}
+                                variant={sortBy === sort ? 'primary' : 'outline'}
+                                size="sm"
+                                onClick={() => setSortBy(sort)}
+                                soundEffect="pop"
+                                className={`capitalize font-pixel text-xs tracking-wider ${
+                                    sortBy === sort ? 'text-black' : 'text-neon-cyan hover:text-neon-cyan'
+                                }`}
+                            >
+                                {sort === 'featured'
+                                    ? '★ FEATURED'
+                                    : sort === 'likes'
+                                        ? '♥ TRENDING'
+                                        : '► NEW'}
+                            </Button>
+                        ))}
+                    </div>
+                </div>
+
                 {/* Games grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {displayGames.map((game) => (
+                    {sortedGames.map((game) => (
                         <GameCard
                             key={game.id}
                             {...game}
@@ -103,6 +183,15 @@ export default function FeaturedGames({
                         />
                     ))}
                 </div>
+
+                {sortedGames.length === 0 && (
+                    <div className="flex items-center justify-center py-16">
+                        <div className="text-center">
+                            <p className="text-gray-400 font-pixel text-lg mb-2">NO GAMES FOUND</p>
+                            <p className="text-gray-600 text-sm">Try adjusting your filters</p>
+                        </div>
+                    </div>
+                )}
             </div>
         </section>
     );
