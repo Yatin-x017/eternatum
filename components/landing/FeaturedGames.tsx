@@ -1,5 +1,8 @@
-import React from 'react';
+'use client';
+
+import React, { useState, useMemo } from 'react';
 import GameCard, { GameCardProps } from './GameCard';
+import { Button } from '@/components/ui/Button';
 
 interface FeaturedGamesProps {
     title?: string;
@@ -8,12 +11,17 @@ interface FeaturedGamesProps {
     onGameClick?: (gameId: string) => void;
 }
 
+type SortOption = 'featured' | 'likes' | 'newest';
+type FilterStatus = 'all' | 'featured' | 'new' | 'beta';
+
 export default function FeaturedGames({
     title = 'PLAY ZONE',
     subtitle = 'Featured Games',
     games = [],
     onGameClick,
 }: FeaturedGamesProps) {
+    const [sortBy, setSortBy] = useState<SortOption>('featured');
+    const [filterStatus, setFilterStatus] = useState<FilterStatus>('all');
     // Default games if none provided
     const defaultGames: GameCardProps[] = [
         {
