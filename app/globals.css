@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Pixelify+Sans:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+/* Fonts */
+
+@theme {
+  /* Fonts */
+  --font-sans: 'Outfit', sans-serif;
+  --font-pixel: 'Pixelify Sans', monospace;
+
+  /* Colors */
+  --color-background: #0a0a0a;
+  --color-surface: #121212;
+  --color-surface-highlight: #1a1a1a;
+
+  --color-neon-cyan: #00f0ff;
+  --color-electric-purple: #bf00ff;
+  --color-pixel-green: #00ff41;
+  --color-soft-magenta: #ff00aa;
+
+  /* Animations */
+  --animate-pulse-slow: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-float: float 3s ease-in-out infinite;
+
+  @keyframes float {
+
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(-5px);
+    }
+  }
+}
+
+:root {
+  /* Fallback / specific usage variables if needed */
+  --background-rgb: 10, 10, 10;
+  --foreground-rgb: 245, 245, 245;
+}
+
+body {
+  background-color: var(--color-background);
+  color: #f5f5f5;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Typography Utilities */
+.font-pixel {
+  font-family: var(--font-pixel);
+}
+
+/* Retro Effects */
+.text-glow-cyan {
+  text-shadow: 0 0 10px rgba(0, 240, 255, 0.5), 0 0 20px rgba(0, 240, 255, 0.3);
+}
+
+.text-glow-green {
+  text-shadow: 0 0 10px rgba(0, 255, 65, 0.5), 0 0 20px rgba(0, 255, 65, 0.3);
+}
+
+.box-glow {
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.15);
+}
+
+/* Scanline Effect */
+.scanlines {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: linear-gradient(to bottom,
+      rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, 0) 50%,
+      rgba(0, 0, 0, 0.1) 50%,
+      rgba(0, 0, 0, 0.1));
+  background-size: 100% 4px;
+  z-index: 9999;
+  opacity: 0.15;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-neon-cyan);
+}
