@@ -396,4 +396,5 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #ffff00;
+  cursor: pointer;
 }
