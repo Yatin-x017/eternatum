@@ -26,6 +26,7 @@ export default function GameCard({
 }: GameCardProps) {
     return (
         <Card
+            id={`game-card-${id}`}
             variant="game"
             className="cursor-pointer group overflow-hidden h-full flex flex-col"
             onClick={onClick}
@@ -55,11 +56,13 @@ export default function GameCard({
                 <button
                     className="absolute inset-0 w-full h-full flex items-center justify-center bg-black/0 group-hover:bg-black/40 transition-colors duration-300"
                     aria-label={`Play ${title}`}
+                    tabIndex={-1}
                 >
                     <div className="rounded-full bg-neon-cyan/0 group-hover:bg-neon-cyan/80 p-3 transition-all duration-300 group-hover:shadow-[0_0_20px_rgba(0,240,255,0.8)]">
                         <Play
                             size={24}
                             className="text-black opacity-0 group-hover:opacity-100 transition-opacity fill-black"
+                            aria-hidden="true"
                         />
                     </div>
                 </button>
@@ -86,22 +89,31 @@ export default function GameCard({
             <div className="p-4 flex-1 flex flex-col">
                 {/* Title and Creator */}
                 <div className="mb-3">
-                    <h3 className="font-bold text-lg text-white group-hover:text-neon-cyan transition-colors line-clamp-2">
+                    <h3
+                        className="font-bold text-lg text-white group-hover:text-neon-cyan transition-colors line-clamp-2"
+                        title={title}
+                    >
                         {title}
                     </h3>
-                    <p className="text-sm text-gray-400 mt-1">by {creator}</p>
+                    <p className="text-sm text-gray-400 mt-1" title={`by ${creator}`}>by {creator}</p>
                 </div>
 
                 {/* Description */}
                 {description && (
-                    <p className="text-sm text-gray-400 mb-3 line-clamp-2 flex-1">
+                    <p
+                        className="text-sm text-gray-400 mb-3 line-clamp-2 flex-1"
+                        title={description}
+                    >
                         {description}
                     </p>
                 )}
 
                 {/* Likes */}
-                <div className="flex items-center gap-2 text-sm text-gray-400 mt-auto pt-2 border-t border-white/5">
-                    <Heart size={16} className="text-soft-magenta" />
+                <div
+                    className="flex items-center gap-2 text-sm text-gray-400 mt-auto pt-2 border-t border-white/5"
+                    title={`${likes.toLocaleString()} likes`}
+                >
+                    <Heart size={16} className="text-soft-magenta" aria-hidden="true" />
                     <span>{likes.toLocaleString()} likes</span>
                 </div>
             </div>
