@@ -112,7 +112,7 @@ export default function GameCard({
             <div className="p-4 flex-1 flex flex-col bg-gradient-to-b from-transparent to-black/20">
                 {/* Title and Creator */}
                 <div className="mb-3">
-                    <h3 className="font-bold text-lg text-white group-hover:text-neon-cyan transition-colors line-clamp-2">
+                    <h3 className={`font-bold text-lg text-white transition-colors line-clamp-2 group-hover:${alternatingColor.text}`}>
                         {title}
                     </h3>
                     <p className="text-sm text-gray-400 mt-1 font-pixel">by {creator}</p>
