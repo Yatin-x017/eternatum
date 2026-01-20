@@ -3,6 +3,7 @@
 import React, { useState, useMemo } from 'react';
 import GameCard, { GameCardProps } from './GameCard';
 import { Button } from '@/components/ui/Button';
+import { getAlternatingColor } from '@/lib/utils';
 
 interface FeaturedGamesProps {
     title?: string;
