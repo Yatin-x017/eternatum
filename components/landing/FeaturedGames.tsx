@@ -126,28 +126,25 @@ export default function FeaturedGames({
                     {/* Filters */}
                     <div className="flex flex-wrap gap-2">
                         <span className="text-sm text-gray-500 font-pixel self-center mr-2">FILTER:</span>
-                        {(['all', 'featured', 'new', 'beta'] as const).map((status) => (
-                            <Button
-                                key={status}
-                                variant={filterStatus === status ? 'primary' : 'outline'}
-                                size="sm"
-                                onClick={() => setFilterStatus(status)}
-                                soundEffect="click"
-                                className={`capitalize font-pixel text-xs tracking-wider ${
-                                    filterStatus === status
-                                        ? 'text-black'
-                                        : status === 'featured'
-                                            ? 'text-neon-red hover:text-neon-red'
-                                            : status === 'new'
-                                                ? 'text-neon-blue hover:text-neon-blue'
-                                                : status === 'beta'
-                                                    ? 'text-neon-green-bright hover:text-neon-green-bright'
-                                                    : ''
-                                }`}
-                            >
-                                {status === 'all' ? '◆ ALL' : `◆ ${status.toUpperCase()}`}
-                            </Button>
-                        ))}
+                        {(['all', 'featured', 'new', 'beta'] as const).map((status, idx) => {
+                            const altColor = getAlternatingColor(idx);
+                            return (
+                                <Button
+                                    key={status}
+                                    variant={filterStatus === status ? 'primary' : 'outline'}
+                                    size="sm"
+                                    onClick={() => setFilterStatus(status)}
+                                    soundEffect="click"
+                                    className={`capitalize font-pixel text-xs tracking-wider ${
+                                        filterStatus === status
+                                            ? 'text-black'
+                                            : `${altColor.text} hover:${altColor.text}`
+                                    }`}
+                                >
+                                    {status === 'all' ? '◆ ALL' : `◆ ${status.toUpperCase()}`}
+                                </Button>
+                            );
+                        })}
                     </div>
 
                     {/* Sort Options */}
