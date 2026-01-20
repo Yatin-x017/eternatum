@@ -51,21 +51,25 @@ export default function LandingPage() {
             {/* Navbar */}
             <header className="relative z-10 mx-auto max-w-7xl px-6 py-6 flex items-center justify-between">
                 <div className="flex items-center gap-3 group cursor-pointer">
-                    <div className="w-8 h-8 bg-neon-cyan rounded-sm animate-pulse-slow" />
-                    <span className="font-pixel text-2xl font-bold tracking-widest text-glow-cyan group-hover:text-neon-cyan transition-colors">
+                    <div className="w-8 h-8 bg-neon-yellow rounded-sm animate-pulse-slow" />
+                    <span className="font-pixel text-2xl font-bold tracking-widest text-glow-yellow group-hover:text-neon-yellow transition-colors">
                         ETERNATUM
                     </span>
                 </div>
                 <nav className="hidden md:flex gap-8 font-medium text-sm text-gray-400">
-                    {['Games', 'Assets', 'Learn', 'Community'].map((item) => (
-                        <a
-                            key={item}
-                            href="#"
-                            className="hover:text-neon-cyan hover:text-glow-cyan transition-colors"
-                        >
-                            {item}
-                        </a>
-                    ))}
+                    {['Games', 'Assets', 'Learn', 'Community'].map((item, idx) => {
+                        const navColors = ['text-neon-yellow hover:text-glow-yellow', 'text-neon-red hover:text-glow-red', 'text-neon-green-bright hover:text-glow-green-bright', 'text-neon-yellow hover:text-glow-yellow'];
+                        const colorClass = navColors[idx % navColors.length];
+                        return (
+                            <a
+                                key={item}
+                                href="#"
+                                className={`${colorClass} transition-colors`}
+                            >
+                                {item}
+                            </a>
+                        );
+                    })}
                 </nav>
                 <div className="flex gap-4">
                     {session ? (
