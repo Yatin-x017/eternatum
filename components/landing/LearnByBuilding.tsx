@@ -66,17 +66,19 @@ export default function LearnByBuilding({
 
                 {/* Steps grid */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-                    {displaySteps.map((step, index) => (
+                    {displaySteps.map((step, index) => {
+                        const colorMap: Record<number, string> = {
+                            0: '#ffff00',  // Yellow
+                            1: '#ff0055',  // Red
+                            2: '#39ff14',  // Green
+                        };
+                        const stepColor = colorMap[index];
+                        return (
                         <Card
                             key={step.number}
                             className="flex flex-col h-full p-6 border-l-4"
                             style={{
-                                borderLeftColor:
-                                    step.number === 1
-                                        ? '#00ff41'
-                                        : step.number === 2
-                                            ? '#00f0ff'
-                                            : '#bf00ff',
+                                borderLeftColor: stepColor,
                             }}
                         >
                             {/* Step number */}
@@ -84,12 +86,7 @@ export default function LearnByBuilding({
                                 <div
                                     className="w-10 h-10 rounded-sm flex items-center justify-center font-pixel font-bold text-black"
                                     style={{
-                                        backgroundColor:
-                                            step.number === 1
-                                                ? '#00ff41'
-                                                : step.number === 2
-                                                    ? '#00f0ff'
-                                                    : '#bf00ff',
+                                        backgroundColor: stepColor,
                                     }}
                                 >
                                     {step.number}
@@ -129,24 +126,15 @@ export default function LearnByBuilding({
                                         className="h-full transition-all duration-500 rounded-full"
                                         style={{
                                             width: `${step.progress}%`,
-                                            backgroundColor:
-                                                step.number === 1
-                                                    ? '#00ff41'
-                                                    : step.number === 2
-                                                        ? '#00f0ff'
-                                                        : '#bf00ff',
-                                            boxShadow:
-                                                step.number === 1
-                                                    ? '0 0 10px #00ff41'
-                                                    : step.number === 2
-                                                        ? '0 0 10px #00f0ff'
-                                                        : '0 0 10px #bf00ff',
+                                            backgroundColor: stepColor,
+                                            boxShadow: `0 0 10px ${stepColor}`,
                                         }}
                                     />
                                 </div>
                             </div>
                         </Card>
-                    ))}
+                        );
+                    })}
                 </div>
 
                 {/* Stats row */}
