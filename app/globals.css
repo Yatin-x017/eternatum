@@ -395,5 +395,5 @@ body {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-neon-cyan);
+  background: #ffff00;
 }
