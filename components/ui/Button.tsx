@@ -12,7 +12,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-    ({ className, variant = 'primary', size = 'md', glow = false, soundEffect = 'click', asChild = false, children, onClick, ...props }, ref) => {
+    ({ className, variant = 'primary', size = 'md', glow = false, colorCycle = false, soundEffect = 'click', asChild = false, children, onClick, ...props }, ref) => {
         const audio = useAudio();
 
         const baseStyles = "relative inline-flex items-center justify-center rounded transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 disabled:opacity-50 disabled:pointer-events-none font-sans font-medium active:translate-y-[1px]";
@@ -31,14 +31,14 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             lg: "h-12 px-8 text-base",
         };
 
-        const glowEffect = glow ? "animate-pulse-slow" : "";
+        const glowEffect = colorCycle ? "animate-button-color-cycle" : glow ? "animate-pulse-slow" : "";
 
         const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
             audio.play(soundEffect);
             onClick?.(e);
         };
 
-        const computedClassName = cn(baseStyles, variants[variant], sizes[size], glowEffect, className);
+        const computedClassName = cn(baseStyles, colorCycle ? "" : variants[variant], sizes[size], glowEffect, className);
 
         // If asChild is true, apply styles to child element
         if (asChild) {
