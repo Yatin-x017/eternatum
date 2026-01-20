@@ -17,9 +17,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         const baseStyles = "relative inline-flex items-center justify-center rounded transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 disabled:opacity-50 disabled:pointer-events-none font-sans font-medium active:translate-y-[1px]";
 
         const variants = {
-            primary: "bg-cyan-500 text-black hover:bg-cyan-400 border border-transparent shadow-[0_0_10px_rgba(0,240,255,0.3)] hover:shadow-[0_0_20px_rgba(0,240,255,0.6)]",
+            primary: "bg-yellow-400 text-black hover:bg-yellow-300 border border-transparent shadow-[0_0_10px_rgba(255,255,0,0.3)] hover:shadow-[0_0_20px_rgba(255,255,0,0.6)]",
             secondary: "bg-purple-600 text-white hover:bg-purple-500 border border-transparent shadow-[0_0_10px_rgba(191,0,255,0.3)] hover:shadow-[0_0_20px_rgba(191,0,255,0.6)]",
-            outline: "bg-transparent border border-cyan-500 text-cyan-400 hover:bg-cyan-950/30",
+            outline: "bg-transparent border border-yellow-400 text-yellow-400 hover:bg-yellow-950/30",
             ghost: "bg-transparent text-gray-300 hover:text-white hover:bg-white/5",
             pixel: "font-pixel uppercase text-sm tracking-widest bg-green-600 text-black hover:bg-green-500 border-2 border-green-400 shadow-[4px_4px_0px_#003300] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_#003300] active:translate-y-[4px] active:shadow-none rounded-none transition-none",
         };
