@@ -314,11 +314,11 @@ body {
 
 /* Box Glows */
 .box-glow {
-  box-shadow: 0 0 15px rgba(0, 240, 255, 0.15);
+  box-shadow: 0 0 15px rgba(255, 255, 0, 0.15);
 }
 
 .box-glow-cyan {
-  box-shadow: 0 0 20px rgba(0, 240, 255, 0.3), 0 0 40px rgba(0, 240, 255, 0.15);
+  box-shadow: 0 0 20px rgba(255, 255, 0, 0.3), 0 0 40px rgba(255, 255, 0, 0.15);
 }
 
 .box-glow-red {
