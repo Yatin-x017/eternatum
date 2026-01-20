@@ -61,7 +61,7 @@ export default function WarpIntro({ onSkip, onComplete, autoSkipDelay = 5000 }: 
             {/* Skip button */}
             <button
                 onClick={handleSkip}
-                className="absolute top-6 right-6 z-10 p-2 text-gray-300 hover:text-neon-cyan transition-colors focus:outline-none focus:ring-2 focus:ring-neon-cyan"
+                className="absolute top-6 right-6 z-10 p-2 text-gray-300 hover:text-neon-yellow transition-colors focus:outline-none focus:ring-2 focus:ring-neon-yellow"
                 aria-label="Skip intro"
             >
                 <X size={24} />
@@ -76,8 +76,8 @@ export default function WarpIntro({ onSkip, onComplete, autoSkipDelay = 5000 }: 
 
                 {/* Logo with glow */}
                 <div className="mb-12 text-center animate-pulse-slow">
-                    <div className="w-16 h-16 bg-neon-cyan rounded-sm mx-auto mb-6 shadow-[0_0_40px_rgba(0,240,255,0.8)]" />
-                    <h1 className="font-pixel text-4xl md:text-5xl font-bold text-neon-cyan tracking-widest text-glow-cyan">
+                    <div className="w-16 h-16 bg-neon-yellow rounded-sm mx-auto mb-6 shadow-[0_0_40px_rgba(255,255,0,0.8)]" />
+                    <h1 className="font-pixel text-4xl md:text-5xl font-bold text-neon-yellow tracking-widest text-glow-yellow">
                         ETERNATUM
                     </h1>
                 </div>
@@ -96,18 +96,18 @@ export default function WarpIntro({ onSkip, onComplete, autoSkipDelay = 5000 }: 
                     {/* Phase 2: Entering message */}
                     {(textPhase >= 2) && (
                         <div className="animate-fade-in">
-                            <p className="font-pixel text-lg text-neon-cyan text-glow-cyan tracking-wide">
+                            <p className="font-pixel text-lg text-neon-yellow text-glow-yellow tracking-wide">
                                 Entering developer space…
                             </p>
                         </div>
                     )}
                 </div>
 
-                {/* Loading indicator */}
+                {/* Loading indicator with alternating colors */}
                 <div className="absolute bottom-20 flex items-center gap-2">
-                    <div className="w-2 h-2 bg-neon-cyan rounded-full animate-bounce" />
-                    <div className="w-2 h-2 bg-neon-cyan rounded-full animate-bounce" style={{ animationDelay: '0.1s' }} />
-                    <div className="w-2 h-2 bg-neon-cyan rounded-full animate-bounce" style={{ animationDelay: '0.2s' }} />
+                    <div className="w-2 h-2 bg-neon-yellow rounded-full animate-bounce" />
+                    <div className="w-2 h-2 bg-neon-red rounded-full animate-bounce" style={{ animationDelay: '0.1s' }} />
+                    <div className="w-2 h-2 bg-neon-green-bright rounded-full animate-bounce" style={{ animationDelay: '0.2s' }} />
                 </div>
             </div>
 
