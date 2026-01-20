@@ -69,7 +69,13 @@ export default function GameCard({
                     className="absolute inset-0 w-full h-full flex items-center justify-center bg-black/0 group-hover:bg-black/50 transition-colors duration-300"
                     aria-label={`Play ${title}`}
                 >
-                    <div className="rounded-full bg-neon-cyan/0 group-hover:bg-neon-cyan p-3 transition-all duration-300 group-hover:shadow-[0_0_30px_rgba(0,240,255,1)] group-hover:animate-pop-bounce">
+                    <div
+                        className="rounded-full p-3 transition-all duration-300 group-hover:animate-pop-bounce"
+                        style={{
+                            backgroundColor: `${alternatingColor.glowColor}/0`,
+                            boxShadow: `0 0 30px ${alternatingColor.glowColor}`,
+                        }}
+                    >
                         <Play
                             size={28}
                             className="text-black opacity-0 group-hover:opacity-100 transition-opacity fill-black"
