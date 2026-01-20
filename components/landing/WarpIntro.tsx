@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { X } from 'lucide-react';
 
 interface WarpIntroProps {
@@ -25,21 +25,21 @@ export default function WarpIntro({ onSkip, onComplete, autoSkipDelay = 5000 }: 
         return () => textTimers.forEach(timer => clearTimeout(timer));
     }, [autoSkipDelay]);
 
+    const handleSkip = useCallback(() => {
+        setIsVisible(false);
+        onSkip?.();
+    }, [onSkip]);
+
+    const handleComplete = useCallback(() => {
+        setIsVisible(false);
+        onComplete?.();
+    }, [onComplete]);
+
     useEffect(() => {
         if (shouldAutoComplete) {
             handleComplete();
         }
-    }, [shouldAutoComplete]);
-
-    const handleSkip = () => {
-        setIsVisible(false);
-        onSkip?.();
-    };
-
-    const handleComplete = () => {
-        setIsVisible(false);
-        onComplete?.();
-    };
+    }, [shouldAutoComplete, handleComplete]);
 
     if (!isVisible) return null;
 
