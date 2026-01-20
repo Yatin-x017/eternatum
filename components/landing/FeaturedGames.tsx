@@ -135,7 +135,8 @@ export default function FeaturedGames({
                                     size="sm"
                                     onClick={() => setFilterStatus(status)}
                                     soundEffect="click"
-                                    className={`capitalize font-pixel text-xs tracking-wider ${
+                                    colorCycle={filterStatus === status}
+                                    className={`capitalize font-pixel text-xs tracking-wider border ${
                                         filterStatus === status
                                             ? 'text-black'
                                             : `${altColor.text} hover:${altColor.text}`
