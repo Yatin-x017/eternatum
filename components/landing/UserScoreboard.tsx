@@ -123,7 +123,14 @@ export default function UserScoreboard({
                                     <div className="font-pixel text-xs text-gray-500 mb-2">
                                         NEXT LEVEL
                                     </div>
-                                    <div className="h-2 bg-black rounded-full overflow-hidden border border-white/10">
+                                    <div
+                                        className="h-2 bg-black rounded-full overflow-hidden border border-white/10"
+                                        role="progressbar"
+                                        aria-valuenow={xp}
+                                        aria-valuemin={0}
+                                        aria-valuemax={maxXp}
+                                        aria-label="Experience progress"
+                                    >
                                         <div
                                             className="h-full bg-gradient-to-r from-electric-purple to-soft-magenta transition-all duration-500"
                                             style={{
@@ -196,7 +203,8 @@ export default function UserScoreboard({
                         <div className="text-center">
                             <button
                                 onClick={onEdit}
-                                className="font-pixel text-sm text-gray-500 hover:text-neon-cyan transition-colors"
+                                className="font-pixel text-sm text-gray-500 hover:text-neon-cyan transition-colors focus-visible:text-neon-cyan focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-neon-cyan/50 rounded px-1"
+                                aria-label="Edit player profile"
                             >
                                 [Edit Profile]
                             </button>
