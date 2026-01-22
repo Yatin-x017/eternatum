@@ -156,7 +156,7 @@ export default function UserScoreboard({
                                     {gamesBuilt}
                                 </div>
                                 <div className="text-xs text-gray-400 mt-1">
-                                    Keep building! 🎮
+                                    Keep building! <span role="img" aria-label="video game">🎮</span>
                                 </div>
                             </Card>
 

@@ -57,6 +57,7 @@ export default function PacManDivider({ enabled = true, onToggle }: PacManDivide
                     viewBox={`0 0 1200 ${dividerHeight}`}
                     className="w-full h-auto"
                     preserveAspectRatio="none"
+                    aria-hidden="true"
                 >
                     {/* Dots */}
                     {Array.from({ length: dotsCount }).map((_, i) => {
@@ -131,7 +132,8 @@ export default function PacManDivider({ enabled = true, onToggle }: PacManDivide
                 <div className="flex justify-center mt-4">
                     <button
                         onClick={() => onToggle?.(false)}
-                        className="text-xs font-pixel text-gray-600 hover:text-gray-400 transition-colors"
+                        className="text-xs font-pixel text-gray-500 hover:text-white transition-colors focus-visible:text-white focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white/20 rounded px-1"
+                        aria-label="Disable Pac-Man animation"
                         title="Disable Pac-Man divider"
                     >
                         [Disable animation]
