@@ -3,9 +3,10 @@ import { cn } from '@/lib/utils';
 
 export interface BadgeProps extends React.HTMLAttributes<HTMLDivElement> {
     variant?: 'default' | 'success' | 'warning' | 'error' | 'outline';
+    colorCycle?: boolean;
 }
 
-function Badge({ className, variant = 'default', ...props }: BadgeProps) {
+function Badge({ className, variant = 'default', colorCycle = false, ...props }: BadgeProps) {
     const variants = {
         default: "bg-surface-highlight text-cyan-400 border-cyan-500/30",
         success: "bg-green-950/30 text-green-400 border-green-500/30",
@@ -14,11 +15,15 @@ function Badge({ className, variant = 'default', ...props }: BadgeProps) {
         outline: "bg-transparent text-gray-400 border-gray-700",
     };
 
+    const animationClass = colorCycle ? "animate-badge-color-cycle" : "";
+    const baseVariantStyle = colorCycle ? "bg-transparent text-neon-red border-neon-red" : variants[variant];
+
     return (
         <div
             className={cn(
                 "inline-flex items-center rounded-sm border px-2.5 py-0.5 text-xs font-pixel font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
-                variants[variant],
+                baseVariantStyle,
+                animationClass,
                 className
             )}
             {...props}
