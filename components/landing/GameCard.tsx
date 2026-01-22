@@ -48,7 +48,7 @@ export default function GameCard({
                     />
                 ) : (
                     <div className="w-full h-full flex items-center justify-center">
-                        <span className="font-pixel text-gray-600 text-sm">NO SIGNAL</span>
+                        <span className="font-pixel text-gray-400 text-sm">NO SIGNAL</span>
                     </div>
                 )}
 
