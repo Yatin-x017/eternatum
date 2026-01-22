@@ -58,17 +58,19 @@ export default function PacManDivider({ enabled = true, onToggle }: PacManDivide
                     className="w-full h-auto"
                     preserveAspectRatio="none"
                 >
-                    {/* Dots */}
+                    {/* Dots - Alternating colors */}
                     {Array.from({ length: dotsCount }).map((_, i) => {
                         const xPos = (i * dotSpacing) + 80;
                         const isEaten = i < dotsEaten;
+                        const dotColors = ['#ffff00', '#ff0055', '#39ff14'];
+                        const dotColor = dotColors[i % dotColors.length];
                         return (
                             <circle
                                 key={`dot-${i}`}
                                 cx={xPos}
                                 cy={dividerHeight / 2}
                                 r={dotRadius}
-                                fill={isEaten ? 'transparent' : '#00f0ff'}
+                                fill={isEaten ? 'transparent' : dotColor}
                                 opacity={isEaten ? 0 : 0.6}
                                 className="transition-opacity duration-100"
                             />
@@ -98,29 +100,29 @@ export default function PacManDivider({ enabled = true, onToggle }: PacManDivide
                         />
                     </g>
 
-                    {/* Ghosts */}
-                    {/* Ghost 1 - Red */}
+                    {/* Ghosts - Alternating colors (Yellow, Red, Green) */}
+                    {/* Ghost 1 - Yellow */}
                     {ghostPhase >= 1 && (
                         <g transform={`translate(${300 + ghostPhase * 40}, ${dividerHeight / 2 - 15})`} opacity={0.8 - ghostPhase * 0.1}>
-                            <rect width="16" height="20" fill="#ff0000" rx="2" />
-                            <circle cx="4" cy="4" r="2" fill="white" />
-                            <circle cx="12" cy="4" r="2" fill="white" />
+                            <rect width="16" height="20" fill="#ffff00" rx="2" />
+                            <circle cx="4" cy="4" r="2" fill="black" />
+                            <circle cx="12" cy="4" r="2" fill="black" />
                         </g>
                     )}
 
-                    {/* Ghost 2 - Pink */}
+                    {/* Ghost 2 - Red */}
                     {ghostPhase >= 2 && (
                         <g transform={`translate(${500 + ghostPhase * 30}, ${dividerHeight / 2 + 10})`} opacity={0.7 - ghostPhase * 0.15}>
-                            <rect width="16" height="20" fill="#ff00aa" rx="2" />
+                            <rect width="16" height="20" fill="#ff0055" rx="2" />
                             <circle cx="4" cy="4" r="2" fill="white" />
                             <circle cx="12" cy="4" r="2" fill="white" />
                         </g>
                     )}
 
-                    {/* Ghost 3 - Cyan */}
+                    {/* Ghost 3 - Green */}
                     {ghostPhase >= 3 && (
                         <g transform={`translate(${700 + ghostPhase * 20}, ${dividerHeight / 2 - 10})`} opacity={0.6 - ghostPhase * 0.1}>
-                            <rect width="16" height="20" fill="#00f0ff" rx="2" />
+                            <rect width="16" height="20" fill="#39ff14" rx="2" />
                             <circle cx="4" cy="4" r="2" fill="black" />
                             <circle cx="12" cy="4" r="2" fill="black" />
                         </g>
