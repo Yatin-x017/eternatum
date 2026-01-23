@@ -170,7 +170,7 @@ export default function LandingPage() {
                         </div>
                     </div>
                     <div className="border-t border-white/5 pt-8 text-center text-sm text-gray-600">
-                        <p>© 2024 ETERNATUM. Built with ❤️ for indie developers.</p>
+                        <p>© 2024 ETERNATUM. Built with <span role="img" aria-label="love">❤️</span> for indie developers.</p>
                     </div>
                 </div>
             </footer>

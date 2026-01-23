@@ -123,7 +123,14 @@ export default function LearnByBuilding({
                                         {step.progress}%
                                     </span>
                                 </div>
-                                <div className="h-3 bg-black rounded-full overflow-hidden border border-white/10">
+                                <div
+                                    className="h-3 bg-black rounded-full overflow-hidden border border-white/10"
+                                    role="progressbar"
+                                    aria-valuenow={step.progress}
+                                    aria-valuemin={0}
+                                    aria-valuemax={100}
+                                    aria-label={`Completion progress for ${step.title}`}
+                                >
                                     <div
                                         className="h-full transition-all duration-500 rounded-full"
                                         style={{
