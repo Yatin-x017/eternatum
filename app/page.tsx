@@ -28,6 +28,14 @@ export default function LandingPage() {
 
     return (
         <main className="relative min-h-screen bg-background text-gray-100 overflow-x-hidden selection:bg-neon-cyan selection:text-black">
+            {/* Skip to content link for accessibility */}
+            <a
+                href="#main-content"
+                className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-neon-cyan focus:text-black focus:rounded-sm focus:font-pixel focus:text-sm focus:outline-none focus:ring-2 focus:ring-white"
+            >
+                SKIP_TO_CONTENT
+            </a>
+
             {/* Warp intro animation */}
             {showWarpIntro && (
                 <WarpIntro
@@ -38,7 +46,7 @@ export default function LandingPage() {
             )}
 
             {/* Background 3D Scene */}
-            <div className="fixed inset-0 z-0 opacity-40 pointer-events-none">
+            <div className="fixed inset-0 z-0 opacity-40 pointer-events-none" aria-hidden="true">
                 <LandingScene />
             </div>
 
@@ -75,7 +83,11 @@ export default function LandingPage() {
             </header>
 
             {/* Hero Command Panel Section */}
-            <section className="relative z-10 flex flex-col items-center justify-center pt-20 pb-32 px-6 text-center max-w-5xl mx-auto">
+            <section
+                id="main-content"
+                className="relative z-10 flex flex-col items-center justify-center pt-20 pb-32 px-6 text-center max-w-5xl mx-auto focus:outline-none"
+                tabIndex={-1}
+            >
                 <Badge variant="success" className="mb-6 animate-float">
                     SYSTEM ONLINE_ v1.0
                 </Badge>
@@ -170,7 +182,7 @@ export default function LandingPage() {
                         </div>
                     </div>
                     <div className="border-t border-white/5 pt-8 text-center text-sm text-gray-600">
-                        <p>© 2024 ETERNATUM. Built with ❤️ for indie developers.</p>
+                        <p>© 2024 ETERNATUM. Built with <span role="img" aria-label="love">❤️</span> for indie developers.</p>
                     </div>
                 </div>
             </footer>

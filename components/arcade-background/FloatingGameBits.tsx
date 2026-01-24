@@ -50,7 +50,8 @@ export const FloatingGameBits = () => {
 
   const updateBits = useCallback((deltaTime: number) => {
     setBits(prevBits => prevBits.map(bit => {
-      let { x, y, vx, vy } = bit;
+      let { x, y } = bit;
+      const { vx, vy } = bit;
 
       x += vx * BIT_SPEED * deltaTime;
       y += vy * BIT_SPEED * deltaTime;
