@@ -1,0 +1,3 @@
+## 2025-05-22 - [Accessibility Patterns for Retro UI]
+**Learning:** In a retro-themed UI with many decorative elements (Phaser scenes, scanlines, animated dividers), accessibility is easily overlooked. High-impact improvements include adding a "Skip to Content" link that matches the pixel aesthetic and ensuring custom-built progress bars are semantically declared with ARIA roles.
+**Action:** Always check for decorative background containers that need `aria-hidden="true"` and ensure custom-styled components like progress bars have full ARIA attributes (`role="progressbar"`, `aria-valuenow`, etc.) and focusable targets for keyboard users.
