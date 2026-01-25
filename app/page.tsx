@@ -2,6 +2,8 @@
 
 import React, { useState } from 'react';
 import dynamic from 'next/dynamic';
+import { useSession, signOut } from 'next-auth/react';
+import Link from 'next/link';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
 
@@ -17,6 +19,7 @@ const UserScoreboard = dynamic(() => import('@/components/landing/UserScoreboard
 export default function LandingPage() {
     const [showWarpIntro, setShowWarpIntro] = useState(true);
     const [pacManEnabled, setPacManEnabled] = useState(true);
+    const { data: session } = useSession();
 
     const handleWarpComplete = () => {
         setShowWarpIntro(false);
@@ -27,7 +30,7 @@ export default function LandingPage() {
     };
 
     return (
-        <main className="relative min-h-screen bg-background text-gray-100 overflow-x-hidden selection:bg-neon-cyan selection:text-black">
+        <main className="relative min-h-screen bg-background text-gray-100 overflow-x-hidden selection:bg-neon-yellow selection:text-black">
             {/* Warp intro animation */}
             {showWarpIntro && (
                 <WarpIntro
@@ -48,41 +51,68 @@ export default function LandingPage() {
             {/* Navbar */}
             <header className="relative z-10 mx-auto max-w-7xl px-6 py-6 flex items-center justify-between">
                 <div className="flex items-center gap-3 group cursor-pointer">
-                    <div className="w-8 h-8 bg-neon-cyan rounded-sm animate-pulse-slow" />
-                    <span className="font-pixel text-2xl font-bold tracking-widest text-glow-cyan group-hover:text-neon-cyan transition-colors">
+                    <div className="w-8 h-8 bg-neon-yellow rounded-sm animate-pulse-slow" />
+                    <span className="font-pixel text-2xl font-bold tracking-widest text-glow-yellow group-hover:text-neon-yellow transition-colors">
                         ETERNATUM
                     </span>
                 </div>
                 <nav className="hidden md:flex gap-8 font-medium text-sm text-gray-400">
-                    {['Games', 'Assets', 'Learn', 'Community'].map((item) => (
-                        <a
-                            key={item}
-                            href="#"
-                            className="hover:text-neon-cyan hover:text-glow-cyan transition-colors"
-                        >
-                            {item}
-                        </a>
-                    ))}
+                    {['Games', 'Assets', 'Learn', 'Community'].map((item, idx) => {
+                        const navColors = ['text-neon-yellow hover:text-glow-yellow', 'text-neon-red hover:text-glow-red', 'text-neon-green-bright hover:text-glow-green-bright', 'text-neon-yellow hover:text-glow-yellow'];
+                        const colorClass = navColors[idx % navColors.length];
+                        return (
+                            <a
+                                key={item}
+                                href="#"
+                                className={`${colorClass} transition-colors`}
+                            >
+                                {item}
+                            </a>
+                        );
+                    })}
                 </nav>
                 <div className="flex gap-4">
-                    <Button variant="ghost" size="sm">
-                        Log In
-                    </Button>
-                    <Button size="sm" glow>
-                        Sign Up
-                    </Button>
+                    {session ? (
+                        <>
+                            <Button variant="ghost" size="sm" asChild>
+                                <Link href="/dashboard">
+                                    Dashboard
+                                </Link>
+                            </Button>
+                            <Button
+                                size="sm"
+                                colorCycle
+                                onClick={() => signOut({ redirect: true })}
+                            >
+                                Log Out
+                            </Button>
+                        </>
+                    ) : (
+                        <>
+                            <Button variant="ghost" size="sm" asChild>
+                                <Link href="/login">
+                                    Log In
+                                </Link>
+                            </Button>
+                            <Button size="sm" colorCycle asChild>
+                                <Link href="/signup">
+                                    Sign Up
+                                </Link>
+                            </Button>
+                        </>
+                    )}
                 </div>
             </header>
 
             {/* Hero Command Panel Section */}
             <section className="relative z-10 flex flex-col items-center justify-center pt-20 pb-32 px-6 text-center max-w-5xl mx-auto">
-                <Badge variant="success" className="mb-6 animate-float">
+                <Badge variant="success" colorCycle className="mb-6 animate-float">
                     SYSTEM ONLINE_ v1.0
                 </Badge>
 
                 <h1 className="font-pixel text-5xl md:text-7xl lg:text-8xl font-bold leading-tight mb-8">
                     Build. Play.{' '}
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-cyan to-electric-purple text-glow-cyan">
+                    <span className="animate-color-cycle">
                         Level Up.
                     </span>
                 </h1>
@@ -92,10 +122,10 @@ export default function LandingPage() {
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4 w-full justify-center">
-                    <Button size="lg" glow className="min-w-[200px] text-lg">
+                    <Button size="lg" colorCycle className="min-w-[200px] text-lg border">
                         Start Building
                     </Button>
-                    <Button variant="outline" size="lg" className="min-w-[200px] text-lg">
+                    <Button variant="outline" size="lg" colorCycle className="min-w-[200px] text-lg">
                         Play Games
                     </Button>
                 </div>
