@@ -65,7 +65,7 @@ export default function LearnByBuilding({
 
                 {/* Steps grid */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-                    {displaySteps.map((step, index) => (
+                    {displaySteps.map((step) => (
                         <Card
                             key={step.number}
                             className="flex flex-col h-full p-6 border-l-4"
@@ -114,7 +114,13 @@ export default function LearnByBuilding({
                             </div>
 
                             {/* Progress bar */}
-                            <div>
+                            <div
+                                role="progressbar"
+                                aria-valuenow={step.progress}
+                                aria-valuemin={0}
+                                aria-valuemax={100}
+                                aria-label={`${step.title} completion progress`}
+                            >
                                 <div className="flex justify-between items-center mb-2">
                                     <span className="font-pixel text-xs text-gray-500">
                                         COMPLETION
