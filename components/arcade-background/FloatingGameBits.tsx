@@ -36,21 +36,27 @@ export const FloatingGameBits = () => {
 
   useEffect(() => {
     if (windowSize.width > 0 && windowSize.height > 0) {
-      const initialBits = Array.from({ length: NUM_BITS }, (_, i) => ({
-        id: i,
-        x: Math.random() * windowSize.width,
-        y: Math.random() * windowSize.height,
-        vx: (Math.random() - 0.5) * 2,
-        vy: (Math.random() - 0.5) * 2,
-        icon: ICONS[Math.floor(Math.random() * ICONS.length)],
-      }));
-      setBits(initialBits);
+      setTimeout(() => {
+        setBits(prev => {
+          if (prev.length > 0) return prev;
+          return Array.from({ length: NUM_BITS }, (_, i) => ({
+            id: i,
+            x: Math.random() * windowSize.width,
+            y: Math.random() * windowSize.height,
+            vx: (Math.random() - 0.5) * 2,
+            vy: (Math.random() - 0.5) * 2,
+            icon: ICONS[Math.floor(Math.random() * ICONS.length)],
+          }));
+        });
+      }, 0);
     }
   }, [windowSize]);
 
   const updateBits = useCallback((deltaTime: number) => {
     setBits(prevBits => prevBits.map(bit => {
-      let { x, y, vx, vy } = bit;
+      const { x: oldX, y: oldY, vx, vy } = bit;
+      let x = oldX;
+      let y = oldY;
 
       x += vx * BIT_SPEED * deltaTime;
       y += vy * BIT_SPEED * deltaTime;

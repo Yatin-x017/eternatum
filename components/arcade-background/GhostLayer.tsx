@@ -29,14 +29,18 @@ export const GhostLayer = () => {
 
   useEffect(() => {
     if (windowSize.width > 0 && windowSize.height > 0) {
-      const initialGhosts = Array.from({ length: NUM_GHOSTS }, (_, i) => ({
-        id: i,
-        x: Math.random() * windowSize.width,
-        y: Math.random() * windowSize.height,
-        vx: (Math.random() - 0.5) * 2,
-        vy: (Math.random() - 0.5) * 2,
-      }));
-      setGhosts(initialGhosts);
+      setTimeout(() => {
+        setGhosts(prev => {
+          if (prev.length > 0) return prev;
+          return Array.from({ length: NUM_GHOSTS }, (_, i) => ({
+            id: i,
+            x: Math.random() * windowSize.width,
+            y: Math.random() * windowSize.height,
+            vx: (Math.random() - 0.5) * 2,
+            vy: (Math.random() - 0.5) * 2,
+          }));
+        });
+      }, 0);
     }
   }, [windowSize]);
 

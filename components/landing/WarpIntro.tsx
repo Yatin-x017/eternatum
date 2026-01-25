@@ -12,18 +12,6 @@ interface WarpIntroProps {
 export default function WarpIntro({ onSkip, onComplete, autoSkipDelay = 5000 }: WarpIntroProps) {
     const [isVisible, setIsVisible] = useState(true);
     const [textPhase, setTextPhase] = useState(0);
-    const [shouldAutoComplete, setShouldAutoComplete] = useState(false);
-
-    useEffect(() => {
-        // Text animation phases
-        const textTimers = [
-            setTimeout(() => setTextPhase(1), 500),
-            setTimeout(() => setTextPhase(2), 2500),
-            setTimeout(() => setShouldAutoComplete(true), autoSkipDelay),
-        ];
-
-        return () => textTimers.forEach(timer => clearTimeout(timer));
-    }, [autoSkipDelay]);
 
     const handleSkip = useCallback(() => {
         setIsVisible(false);
@@ -36,10 +24,15 @@ export default function WarpIntro({ onSkip, onComplete, autoSkipDelay = 5000 }: 
     }, [onComplete]);
 
     useEffect(() => {
-        if (shouldAutoComplete) {
-            handleComplete();
-        }
-    }, [shouldAutoComplete, handleComplete]);
+        // Text animation phases
+        const textTimers = [
+            setTimeout(() => setTextPhase(1), 500),
+            setTimeout(() => setTextPhase(2), 2500),
+            setTimeout(() => handleComplete(), autoSkipDelay),
+        ];
+
+        return () => textTimers.forEach(timer => clearTimeout(timer));
+    }, [autoSkipDelay, handleComplete]);
 
     if (!isVisible) return null;
 

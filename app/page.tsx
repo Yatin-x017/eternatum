@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
@@ -28,6 +29,12 @@ export default function LandingPage() {
 
     return (
         <main className="relative min-h-screen bg-background text-gray-100 overflow-x-hidden selection:bg-neon-cyan selection:text-black">
+            <a
+                href="#main-content"
+                className="sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:px-4 focus:py-2 focus:bg-neon-cyan focus:text-black focus:font-bold focus:outline-none"
+            >
+                Skip to Content
+            </a>
             {/* Warp intro animation */}
             {showWarpIntro && (
                 <WarpIntro
@@ -47,12 +54,12 @@ export default function LandingPage() {
 
             {/* Navbar */}
             <header className="relative z-10 mx-auto max-w-7xl px-6 py-6 flex items-center justify-between">
-                <div className="flex items-center gap-3 group cursor-pointer">
-                    <div className="w-8 h-8 bg-neon-cyan rounded-sm animate-pulse-slow" />
+                <Link href="/" className="flex items-center gap-3 group">
+                    <div className="w-8 h-8 bg-neon-cyan rounded-sm animate-pulse-slow" aria-hidden="true" />
                     <span className="font-pixel text-2xl font-bold tracking-widest text-glow-cyan group-hover:text-neon-cyan transition-colors">
                         ETERNATUM
                     </span>
-                </div>
+                </Link>
                 <nav className="hidden md:flex gap-8 font-medium text-sm text-gray-400">
                     {['Games', 'Assets', 'Learn', 'Community'].map((item) => (
                         <a
@@ -75,7 +82,11 @@ export default function LandingPage() {
             </header>
 
             {/* Hero Command Panel Section */}
-            <section className="relative z-10 flex flex-col items-center justify-center pt-20 pb-32 px-6 text-center max-w-5xl mx-auto">
+            <section
+                id="main-content"
+                tabIndex={-1}
+                className="relative z-10 flex flex-col items-center justify-center pt-20 pb-32 px-6 text-center max-w-5xl mx-auto focus:outline-none"
+            >
                 <Badge variant="success" className="mb-6 animate-float">
                     SYSTEM ONLINE_ v1.0
                 </Badge>
