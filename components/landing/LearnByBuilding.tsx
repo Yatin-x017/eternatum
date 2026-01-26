@@ -65,7 +65,7 @@ export default function LearnByBuilding({
 
                 {/* Steps grid */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-                    {displaySteps.map((step, index) => (
+                    {displaySteps.map((step) => (
                         <Card
                             key={step.number}
                             className="flex flex-col h-full p-6 border-l-4"
@@ -123,7 +123,14 @@ export default function LearnByBuilding({
                                         {step.progress}%
                                     </span>
                                 </div>
-                                <div className="h-3 bg-black rounded-full overflow-hidden border border-white/10">
+                                <div
+                                    className="h-3 bg-black rounded-full overflow-hidden border border-white/10"
+                                    role="progressbar"
+                                    aria-valuenow={step.progress}
+                                    aria-valuemin={0}
+                                    aria-valuemax={100}
+                                    aria-label={`${step.title} progress`}
+                                >
                                     <div
                                         className="h-full transition-all duration-500 rounded-full"
                                         style={{
