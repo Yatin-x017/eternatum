@@ -36,9 +36,9 @@ export const GhostLayer = () => {
         vx: (Math.random() - 0.5) * 2,
         vy: (Math.random() - 0.5) * 2,
       }));
-      setGhosts(initialGhosts);
+      setTimeout(() => setGhosts(initialGhosts), 0);
     }
-  }, [windowSize]);
+  }, [windowSize.width, windowSize.height]);
 
   const updateGhosts = useCallback((deltaTime: number) => {
     setGhosts(prevGhosts => prevGhosts.map(ghost => {

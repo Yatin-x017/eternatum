@@ -44,13 +44,14 @@ export const FloatingGameBits = () => {
         vy: (Math.random() - 0.5) * 2,
         icon: ICONS[Math.floor(Math.random() * ICONS.length)],
       }));
-      setBits(initialBits);
+      setTimeout(() => setBits(initialBits), 0);
     }
-  }, [windowSize]);
+  }, [windowSize.width, windowSize.height]);
 
   const updateBits = useCallback((deltaTime: number) => {
     setBits(prevBits => prevBits.map(bit => {
-      let { x, y, vx, vy } = bit;
+      let { x, y } = bit;
+      const { vx, vy } = bit;
 
       x += vx * BIT_SPEED * deltaTime;
       y += vy * BIT_SPEED * deltaTime;
