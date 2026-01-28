@@ -1,0 +1,3 @@
+## 2025-05-14 - [Skip to Content pattern]
+**Learning:** For multi-page Next.js applications, the "Skip to Content" accessibility link should be implemented in the root layout (e.g., `layout.tsx`) to ensure it is available globally as the first focusable element on every page. It should target a consistent ID like `#main-content` which must be present on every page and have `tabIndex={-1}` to allow programmatic focus without visual focus rings.
+**Action:** Always prefer implementing global accessibility features in the layout level and ensure all page templates follow the corresponding target ID convention.
