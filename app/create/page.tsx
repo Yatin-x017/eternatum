@@ -24,7 +24,7 @@ export default function Home() {
       </header>
 
       {/* Workspace */}
-      <div className="flex flex-1 overflow-hidden">
+      <div id="main-content" tabIndex={-1} className="flex flex-1 overflow-hidden focus:outline-none">
         {/* Left: Editor */}
         <div className="w-1/2 border-r border-neutral-800 flex flex-col">
           <div className="flex items-center justify-between bg-neutral-900 px-4 py-2 text-xs text-neutral-400 border-b border-neutral-800">
