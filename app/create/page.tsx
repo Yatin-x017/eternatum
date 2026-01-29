@@ -9,7 +9,11 @@ const GameCanvas = dynamic(() => import('@/components/game/GameCanvas'), { ssr: 
 
 export default function Home() {
   return (
-    <main className="flex h-screen flex-col bg-neutral-900 text-white overflow-hidden">
+    <main
+      id="main-content"
+      tabIndex={-1}
+      className="flex h-screen flex-col bg-neutral-900 text-white overflow-hidden focus:outline-none"
+    >
       {/* Header */}
       <header className="flex items-center justify-between border-b border-neutral-800 bg-neutral-950 px-4 py-3">
         <div className="flex items-center gap-2">
