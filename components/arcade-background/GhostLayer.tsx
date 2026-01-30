@@ -36,7 +36,10 @@ export const GhostLayer = () => {
         vx: (Math.random() - 0.5) * 2,
         vy: (Math.random() - 0.5) * 2,
       }));
-      setGhosts(initialGhosts);
+      const timer = setTimeout(() => {
+        setGhosts(initialGhosts);
+      }, 0);
+      return () => clearTimeout(timer);
     }
   }, [windowSize]);
 
