@@ -1,0 +1,3 @@
+## 2025-05-15 - [Accessibility & Performance Polishing]
+**Learning:** Custom UI components like progress bars often miss semantic ARIA attributes (role="progressbar", aria-valuenow, etc.), making them inaccessible to screen readers. Additionally, standard Next.js linting rules strongly encourage the use of `<Image />` for optimization and forbid synchronous `setState` calls within `useEffect` for animation-heavy components to prevent cascading renders.
+**Action:** Always verify custom interactive components for ARIA compliance. Use `setTimeout(() => ..., 0)` or functional state updates to handle initialization logic in effects that trigger parent state changes. Prefer Next.js `<Image />` over `<img>` tags for all UI graphics.
