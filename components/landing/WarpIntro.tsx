@@ -37,7 +37,7 @@ export default function WarpIntro({ onSkip, onComplete, autoSkipDelay = 5000 }: 
 
     useEffect(() => {
         if (shouldAutoComplete) {
-            handleComplete();
+            setTimeout(() => handleComplete(), 0);
         }
     }, [shouldAutoComplete, handleComplete]);
 
