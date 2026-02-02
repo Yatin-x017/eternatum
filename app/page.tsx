@@ -27,7 +27,11 @@ export default function LandingPage() {
     };
 
     return (
-        <main className="relative min-h-screen bg-background text-gray-100 overflow-x-hidden selection:bg-neon-cyan selection:text-black">
+        <main
+            id="main-content"
+            tabIndex={-1}
+            className="relative min-h-screen bg-background text-gray-100 overflow-x-hidden selection:bg-neon-cyan selection:text-black focus:outline-none"
+        >
             {/* Warp intro animation */}
             {showWarpIntro && (
                 <WarpIntro
