@@ -1,0 +1,3 @@
+## 2025-05-14 - [Accessibility] Global Skip to Content link and ARIA progress bars
+**Learning:** Implementing a "Skip to Content" link is a high-impact, low-effort accessibility improvement that significantly helps keyboard users. In projects with full-screen overlays (like WarpIntro), the skip link should have a higher z-index (e.g., `z-[100]`) to ensure it remains visible when focused. Additionally, visual progress bars should always be accompanied by semantic ARIA attributes to be usable by screen readers.
+**Action:** Always include a skip-to-content link in the root layout and ensure custom progress indicators use `role="progressbar"` with appropriate `aria-valuenow`, `aria-valuemin`, and `aria-valuemax` attributes.
