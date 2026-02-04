@@ -25,6 +25,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-neon-cyan focus:text-black focus:rounded focus:font-bold focus:outline-none"
+        >
+          Skip to content
+        </a>
         <ArcadeBackgroundProvider>
           <AppContent>{children}</AppContent>
         </ArcadeBackgroundProvider>
