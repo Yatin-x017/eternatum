@@ -86,7 +86,7 @@ const LandingScene: React.FC = () => {
         }
     }, []);
 
-    return <div id="landing-scene" className="absolute inset-0 z-0 pointer-events-none opacity-40" />;
+    return <div id="landing-scene" className="absolute inset-0 z-0 pointer-events-none opacity-40" aria-hidden="true" />;
 }
 
 export default LandingScene;
