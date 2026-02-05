@@ -5,7 +5,7 @@ import { FloatingGameBits } from './FloatingGameBits';
 
 export const ArcadeBackground = () => {
   return (
-    <div className="fixed inset-0 w-full h-full pointer-events-none z-[-1]">
+    <div className="fixed inset-0 w-full h-full pointer-events-none z-[-1]" aria-hidden="true">
       <PacmanLayer />
       <GhostLayer />
       <FloatingGameBits />
