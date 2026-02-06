@@ -1,5 +1,6 @@
 import React from 'react';
 import { Heart, Play } from 'lucide-react';
+import Image from 'next/image';
 import { Card } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
 
@@ -41,10 +42,11 @@ export default function GameCard({
             {/* Thumbnail */}
             <div className="relative aspect-video bg-surface-highlight overflow-hidden border-b border-white/5 group-hover:border-cyan-500/30 transition-colors">
                 {thumbnail ? (
-                    <img
+                    <Image
                         src={thumbnail}
                         alt={title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-300"
                     />
                 ) : (
                     <div className="w-full h-full flex items-center justify-center">
