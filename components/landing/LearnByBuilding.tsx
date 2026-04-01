@@ -1,7 +1,6 @@
 import React from 'react';
 import { Card } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
-import { getAlternatingColor } from '@/lib/utils';
 
 interface LearnStepProps {
     number: number;
@@ -66,19 +65,17 @@ export default function LearnByBuilding({
 
                 {/* Steps grid */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-                    {displaySteps.map((step, index) => {
-                        const colorMap: Record<number, string> = {
-                            0: '#ffff00',  // Yellow
-                            1: '#ff0055',  // Red
-                            2: '#39ff14',  // Green
-                        };
-                        const stepColor = colorMap[index];
-                        return (
+                    {displaySteps.map((step, index) => (
                         <Card
                             key={step.number}
                             className="flex flex-col h-full p-6 border-l-4"
                             style={{
-                                borderLeftColor: stepColor,
+                                borderLeftColor:
+                                    step.number === 1
+                                        ? '#00ff41'
+                                        : step.number === 2
+                                            ? '#00f0ff'
+                                            : '#bf00ff',
                             }}
                         >
                             {/* Step number */}
@@ -86,7 +83,12 @@ export default function LearnByBuilding({
                                 <div
                                     className="w-10 h-10 rounded-sm flex items-center justify-center font-pixel font-bold text-black"
                                     style={{
-                                        backgroundColor: stepColor,
+                                        backgroundColor:
+                                            step.number === 1
+                                                ? '#00ff41'
+                                                : step.number === 2
+                                                    ? '#00f0ff'
+                                                    : '#bf00ff',
                                     }}
                                 >
                                     {step.number}
@@ -126,15 +128,24 @@ export default function LearnByBuilding({
                                         className="h-full transition-all duration-500 rounded-full"
                                         style={{
                                             width: `${step.progress}%`,
-                                            backgroundColor: stepColor,
-                                            boxShadow: `0 0 10px ${stepColor}`,
+                                            backgroundColor:
+                                                step.number === 1
+                                                    ? '#00ff41'
+                                                    : step.number === 2
+                                                        ? '#00f0ff'
+                                                        : '#bf00ff',
+                                            boxShadow:
+                                                step.number === 1
+                                                    ? '0 0 10px #00ff41'
+                                                    : step.number === 2
+                                                        ? '0 0 10px #00f0ff'
+                                                        : '0 0 10px #bf00ff',
                                         }}
                                     />
                                 </div>
                             </div>
                         </Card>
-                        );
-                    })}
+                    ))}
                 </div>
 
                 {/* Stats row */}
